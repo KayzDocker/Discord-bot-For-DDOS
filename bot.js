@@ -1,4 +1,3 @@
-@@ -0,0 +1,49 @@
 const discord = require('discord.js');
 const request = require('request');
 var setTitle = require('console-title');
