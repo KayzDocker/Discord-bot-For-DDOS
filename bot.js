@@ -31,6 +31,12 @@ client.on('message', (msg) => { if(msg.content === `${config.prefix}help`)
 //-----------------------------------------------
 client.on('message', (msg) => { if(msg.content.startsWith(config.prefix + 'FREE'))
 {
+	const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
+    if(args.length < 4) { msg.channel.send(Warn('ไม่ผบรูปแบบ!')); return;  }
+    if(args[1].length > 29) { msg.channel.send(Warn('ความยาวipไม่ถูกต้อง!')); return; }
+    if(args[1].length < 7) { msg.channel.send(Warn('ความยาวipไม่ถูกต้อง!')); return; }
+    if(isLetter(args[2])) { msg.channel.send(Warn('พอร์ตต้องไม่มีอักขระ!')); return; }
+    if(isLetter(args[3])) { msg.channel.send(Warn('เวลาไม่สามารถมีอักขระได้!')); return; }
     if(Number(args[2]) > 65535) { msg.channel.send(Warn('ขนาดพอร์ตสูงสุดคือ 65535!')); return; }
     if(Number(args[3]) > config.maxtime) { msg.channel.send(Warn('เวลาสูงสุดคือ ' + config.maxtime +  ' วินาที!')); return; }
     if(Number(args[3]) < config.mintime) { msg.channel.send(Warn('เวลาขั้นต่ำคือ ' + config.mintime +  ' วินาที!')); return; }
